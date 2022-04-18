@@ -75,11 +75,54 @@ const thoughtController = {
         res.status(404).json({ message: 'No thought found!' });
         return;
       }
-      res.json(dbThoughtData)
+      return User.findOneAndUpdate(
+        { _id: params.userId },
+        { $pull: {thoughts: params.thoughtId } },
+        { new: true }
+      );
+    })
+    .then(dbUserData => {
+      if(!dbUserData) {
+        res.status(404).json({ message: 'No user found!'});
+        return;
+      }
+      res.json(dbUserData)
     })
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
+    })
+  },
+  // POST to create a reaction stored in a single thoughts reaction array field
+  addReaction({ params, body }, res) {
+    Thought.findOneAndUpdate(
+      { _id: params.thoughtId },
+      { $push: { reactions: body } },
+      { new: true }
+    )
+    .then(dbUserData => {
+      if(!dbUserData) {
+        res.status(404).json({ message: 'No user found!' });
+        return;
+      }
+      res.json(dbUserData)
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    })
+  },
+  // DELETE to pull and remove a reaction by the reaction's reactionId value
+  removeReaction({ params }, res) {
+    Thought.findOneAndUpdate(
+      { _id: params.thoughtId },
+      { $pull: { reactions: { reactionId: params.reactionId } } },
+      { new: true }
+    )
+    .then(dbUserData => res.json(dbUserData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err)
     })
   }
 }
