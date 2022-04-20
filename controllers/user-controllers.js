@@ -54,7 +54,7 @@ const userController = {
   },
   // PUT to update a user by _id
   updateUser({ params, body }, res) {
-    User.findOneAndUpdate({ _id: params.id })
+    User.findOneAndUpdate({ _id: params.id }, body, {new: true})
       .then(dbUserData => {
         if(!dbUserData) {
           res.status(404).json({ message: 'No user found!' })
