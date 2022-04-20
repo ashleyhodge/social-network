@@ -19,6 +19,8 @@ This is a project for Module 18: NoSQL of the Vanderbilt Coding Boot Camp.
 ## Description
 This is the backend of a social media application that lets a user create an account using their email and username, share thoughts, react to thoughts, and become friends with each other.
 
+<img src= "/Users/ashley/Desktop/projects/social-network/public/social-network-api.gif">
+
 ## Installation
 Before using this application please follow these steps:
 1. Run `npm init --y`
@@ -49,4 +51,4 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 ```
 ## Links
 - [GitHub Repository](https://github.com/ashleyhodge/social-network)
-- [Walkthrough Video]()
+- [Walkthrough Video](https://drive.google.com/file/d/17djy7Mi5_HDhJomNjgOI_W9XxXVjVWPX/view)
